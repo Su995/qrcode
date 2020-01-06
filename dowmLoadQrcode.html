@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+    <script src="jquery.min1.9.1.js"></script>
+    <script src="qrcode.js"></script>
+
+</head>
+<body>
+    <div class="md-content md-center">
+        <div class="md-pos">
+            <textarea placeholder="请输入" id="qrcodeinput" cols="30" rows="10"></textarea>
+            <button onclick="onGeQRcode()" class="md-qrcode-btn">生成二维码</button>
+        </div>
+        <div class="md-pos">
+            <div id="qrcode" class="md-qrcode-img md-center"></div>
+            <button class="md-qrcode-btn" onclick="downloadImage()">下载</button>
+        </div>
+    </div>
+    <script>
+        function makeCode(value) {
+            var qrcode = new QRCode("qrcode",{
+                width:250,
+                height:250,
+                colorDark:'#000000',
+                colorLight:'#ffffff',
+                correctLevel:QRCode.CorrectLevel.H
+            });
+            qrcode.makeCode(value);
+        };
+        function onGeQRcode() {
+            let _val = document.getElementById("qrcodeinput").value;
+            if(_val.trim() == ""){
+                alert("请输入内容");
+                return;
+            }
+            makeCode(_val);
+        };
+        function downloadImage() {
+            var imgs = document.getElementById('qrcode').getElementsByTagName("img");
+
+            var s = document.createElement('a');
+            s.download = 'xds'+new Date().getTime() || '下载图片名称';
+            s.href=imgs[0].src;
+            document.body.appendChild(s);
+            s.click();
+            document.body.removeChild(s);
+        }
+    </script>
+</body>
+</html>

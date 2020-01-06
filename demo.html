@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>演示：使用jquery.qrcode生成二维码</title>
+    <title>生成二维码</title>
     <style type="text/css">
         .demo{width:400px; margin:40px auto 0 auto; min-height:250px;}
         .demo p{line-height:30px}
@@ -19,7 +19,7 @@
                 $("#code").empty();
                 var str = toUtf8($("#mytxt").val());
                 $("#code").qrcode({
-                    render: "table",
+                    // render: "table",
                     width: 200,
                     height:200,
                     text: str
