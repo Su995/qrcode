@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        .md-content{
+            width: 60%;
+            margin: 0 auto;
+            background: #d9f5ff;
+        }
+        button{
+            background-image: none;
+            background: #fff;
+            padding: 5px 18px;
+            border: 1px solid #5490a6;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+        }
+        img{
+            width: 200px;
+            height:200px;
+            margin: 20px auto;
+        }
 
     </style>
     <script src="jquery.min1.9.1.js"></script>
@@ -18,7 +37,7 @@
         </div>
         <div class="md-pos">
             <div id="qrcode" class="md-qrcode-img md-center"></div>
-            <button class="md-qrcode-btn" onclick="downloadImage()">下载</button>
+            <button class="md-qrcode-btn" onclick="downloadImage()" style="margin: 10px 0 10px 46%;">下载</button>
         </div>
     </div>
     <script>
@@ -40,6 +59,7 @@
                 return;
             }
             makeCode(_val);
+            $("#qrcodeinput").blur();
         };
         /*下载二维码*/
         function downloadImage() {
@@ -51,6 +71,11 @@
             document.body.appendChild(s);
             s.click();
             document.body.removeChild(s);
+        }
+        document.onkeydown = function (event) {console.log(event.keyCode)
+            if(event.keyCode == '13'){
+                onGeQRcode();
+            }
         }
     </script>
 </body>
